@@ -1,0 +1,44 @@
+{% extends 'admin/bars.html.twig' %}
+
+{% block contenpage %}
+    <div><p><h2>Liste  des evenement</h2></p></div>
+
+    {% if evenement %}
+        <table id="evenement" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Lieux</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>image</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in evenement %}
+                <tr>
+                    <td>{{ event.Nom }}</td>
+                    <td>{{ event.Lieu }}</td>
+                    <td>{{ event.Date }}</td>
+                    <td>{{ event.Type }}</td>
+                    <td>{{ event.Description }}</td>
+                    <td><td> <img class="-google-plus-circle" src="{{ asset('uploads/images/') ~ event.image }}"alt="exercice" width="192" height="140" >  </td>
+                    </td>
+                    <td>
+                        <a href="{{ path('Ajoute-event') }}" class="btn btn-dark">Ajouter</a>
+                        <a href="{{ path('updateEvenement',{'id':event.id})}}"  class="btn btn-dark">Modifier</a>
+
+                        <a href="{{ path('deleteEvenement' ,{ 'id':event.id})}}" class="btn btn-danger"
+                           onclick="return confirm('Etes-vous sûr de supprimer cet evenement ?');">Supprimer
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucun articles</p>
+    {% endif %}
+{% endblock %}

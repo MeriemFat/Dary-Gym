@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    {% block body %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" href="{{ asset("assets/img/favicon.png") }}">
+        <title>Welcome!</title>
+        <!-- =================== STYLE =================== -->
+
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset("assets/css/slick.min.css") }}">
+            <link rel="stylesheet" href="{{ asset("assets/css/bootstrap-grid.css") }}">
+            <link rel="stylesheet" href="{{ asset("assets/css/font-awesome.min.css") }}">
+            <link rel="stylesheet" href="{{ asset("assets/css/style.css") }}">
+        {% endblock %}
+
+        {% block javascripts %}
+            <!--=================== SCRIPT	===================-->
+            <script src="{{ asset("assets/js/jquery-2.2.4.min.js") }}"></script>
+            <script src="{{ asset("assets/js/slick.min.js") }}"></script>
+            <script src="{{ asset("assets/js/rx-lazy.js") }}"></script>
+            <script src="{{ asset("assets/js/parallax.min.js") }}"></script>
+            <script src="{{ asset("assets/js/scripts.js") }}"></script>
+        {% endblock %}
+    </head>
+<body id="home">
+<!--================ PRELOADER ================-->
+<div class="preloader-cover">
+    <div id="cube-loader">
+        <div class="caption">
+            <div class="cube-loader">
+                <div class="cube loader-1"></div>
+                <div class="cube loader-2"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<header class="header">
+    <a href="#" class="nav-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+    <div class="top-panel">
+        <div class="container">
+            <div class="header-left">
+                <ul class="header-cont">
+                    <li><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:216 280">216 28 028 837</a></li>
+                    <li><i class="fa fa-clock-o" aria-hidden="true"></i>Mon - Sun: 8:00AM - 10:00PM </li>
+                </ul>
+            </div>
+            <div class="header-right">
+                <form class="search-form">
+                    <input type="search" class="search-form__field" placeholder="Search" value="" name="s">
+                    <button type="submit" class="search-form__submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </form>
+                <ul class="social-list">
+                    <li><a target="_blank" href="https://www.facebook.com/rovadex"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a target="_blank" href="https://twitter.com/RovadexStudio"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a target="_blank" href="https://www.youtube.com"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                    <li><a target="_blank" href="https://www.instagram.com/rovadex"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="header-menu">
+        <div class="container">
+            <div class="header-logo">
+                <a href="index.html" class="logo"><img src="{{ asset('assets/img/logo.svg') }}" alt="logo"></a>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="dropdown">
+                        <a href="#">Home <i class="fa fa-caret-down"></i></a>
+                        <ul>
+                            <li class="menu-active"><a href="index.html">Crossfit</a></li>
+                            <li><a href="home-fitness.html">Fitness</a></li>
+                            <li><a href="home-crossfit-lite.html">Crossfit Lite</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="{{ path('acceuille-list') }}">Acceuille</a></li>
+                    <ul>
+
+                        <li><a href="{{ path('reservation-list') }}">Evenement</a></li>
+
+                    </ul>
+                    </li>
+                    <li><a href="blog.html">News</a></li>
+                    <li><a href="contacts.html">Contacts</a></li>
+                </ul>
+            </nav>
+        </div>
+        {% block contenpage %}{% endblock %}
+    </div>
+</header>
+{% endblock %}

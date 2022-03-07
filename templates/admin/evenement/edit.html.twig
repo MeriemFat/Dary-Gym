@@ -1,0 +1,19 @@
+{% extends 'admin/bars.html.twig' %}
+
+{% block contenpage %}
+
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <h1> Modifier un étudiant </h1>
+    {{ form_errors(form.Nom) }}
+    {{ form_errors(form.Lieu) }}
+    {{ form_errors(form.Date) }}
+    {{ form_errors(form.Type) }}
+    {{ form_errors(form.Description) }}
+
+    {{ form_widget(form) }}
+
+    <button type="submit" class="btn btn-success">evenement Modifier</button>
+    {{ form_end(form) }}
+{% endblock %}
+
+

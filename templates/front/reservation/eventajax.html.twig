@@ -1,0 +1,15 @@
+{% for event in evenement %}
+    <div class="col-md-4 crossfit-col">
+        <div class="crossfit-item">
+            <img class="rx-lazy" src="{{ asset('/uploads/images/') ~event.image}}" style="width: 150px; height: 150px;" data-src="assets/img/serv-1.svg" alt="img">
+            <h3>{{ event.Nom }}</h3>
+            <p>{{ event.description}}</p>
+            <p style="color: #FFFFFF">{{ event.Date}}</p>
+            <p style="color: #FFFFFF">{{ event.type}}</p>
+            <p style="color: #FFFFFF">{{ event.lieu}}</p>
+            <a class="btn" href="{{ path('Ajoute-reserve') }}">Réserver</a>
+            <br>
+            <a class="btn" href="{{ path('pdf' , {"id" : event.id}) }}"> Extraire Ticket</a>
+        </div>
+    </div>
+{% endfor %}

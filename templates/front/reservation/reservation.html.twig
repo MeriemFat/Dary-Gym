@@ -1,0 +1,14 @@
+{% extends 'front/base.html.twig' %}
+
+
+{% block contenpage %}
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <div><p><h2>Reserver</h2></p></div>
+    {{ form_errors(form.namepart) }}
+    {{ form_errors(form.usernamepart) }}
+    {{ form_errors(form.ville) }}
+    {{ form_errors(form.numtelephonepart) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-success">Réserver</button>
+    {{ form_end(form) }}
+{% endblock %}

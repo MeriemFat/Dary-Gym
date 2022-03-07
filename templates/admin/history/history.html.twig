@@ -1,0 +1,9 @@
+{% extends 'admin/bars.html.twig' %}
+
+{% block contenpage %}
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <div><p><h2>Ajouter Un Acceuille</h2></p></div>
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-success">Ajouter</button>
+    {{ form_end(form) }}
+{% endblock %}

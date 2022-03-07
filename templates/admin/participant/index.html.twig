@@ -1,0 +1,38 @@
+{% extends 'admin/bars.html.twig' %}
+
+{% block contenpage %}
+    <div><p><h2>Liste  des participents</h2></p></div>
+
+    {% if reservation %}
+        <table id="reservation" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name-participant</th>
+                <th>UserName-participant</th>
+                <th>ville</th>
+                <th>NumeroTelephone-participant</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for parte in reservation %}
+                <tr>
+                    <td>{{ parte.namepart }}</td>
+                    <td>{{ parte.usernamepart }}</td>
+                    <td>{{ parte.ville}}</td>
+                    <td>{{ parte.numtelephonepart}}</td>
+                    <td>
+                        <a href="{{ path('deleteParticipants',{ 'id':parte.id})}}" class="btn btn-danger"
+                           onclick="return confirm('Etes-vous sûr de supprimer cet evenement ?');">Supprimer
+                        </a>
+                        <a href="{{ path('qrcode' , {'id' : parte.id}) }}" class="btn btn-primary">Generer Qr code</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucun Participant</p>
+    {% endif %}
+{% endblock %}

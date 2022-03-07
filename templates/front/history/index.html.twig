@@ -1,0 +1,35 @@
+{% extends 'front/base.html.twig' %}
+ {% block contenpage %}
+     <section class="s-out-trainer" style="background-image: url(assets/img/bg-contacts.svg);">
+         <div class="container">
+             <h2 class="title-decor">Our <span>Event</span></h2>
+             <p class="slogan">Be spotive , Be happy , Be lifes</p>
+             <div class="row">
+                 {% for blog in blog %}
+                     <div class="col-md-4 crossfit-col">
+                         <div class="crossfit-item">
+                             <div class="border border-dark rounded p-4 clearfix" style="height: 50%; width:100%">
+                                 <p style="color: #FFFFFF">{{ blog.nomarchive }}</p>
+                                 <p style="color: #FFFFFF">{{ blog.description}}</p>
+                                 <hr>
+                                 <hr>
+                                 <centre>
+                                 <ul class="social-list">
+
+                                     <li><a target="_blank" href="https://www.facebook.com/rovadex"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                     <li><a target="_blank" href="https://twitter.com/RovadexStudio"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                     <li><a target="_blank" href="https://www.youtube.com"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                                     <li><a target="_blank" href="https://www.instagram.com/rovadex"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                 </ul>
+                             </div>
+                         </div>
+                     </div>
+                 {% endfor %}
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+ {% endblock %}
+
+

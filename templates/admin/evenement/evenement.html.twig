@@ -1,0 +1,17 @@
+{% extends 'admin/bars.html.twig' %}
+
+{% block contenpage %}
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <div><p><h2>Ajouter Un evenement</h2></p></div>
+    {{ form_errors(form.Nom) }}
+    {{ form_errors(form.Lieu) }}
+    {{ form_errors(form.Date) }}
+    {{ form_errors(form.Type) }}
+    {{ form_errors(form.Description) }}
+    {{ form_widget(form) }}
+
+    <button type="submit" class="btn btn-success">Créer evenement</button>
+    {{ form_end(form) }}
+{% endblock %}
+
+
