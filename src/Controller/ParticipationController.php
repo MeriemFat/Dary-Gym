@@ -11,9 +11,18 @@ use Endroid\QrCodeBundle\Response\QrCodeResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Twilio\Rest\Client;
 
 class ParticipationController extends AbstractController
 {
+    /** @var Client $twilio */
+        private $twilio;
+
+    public function __construct(Client $twilio)
+    {
+        $this->twilio = $twilio;
+    }
+
     /**
      * @Route("/list",name="part-list")
      */
@@ -39,12 +48,24 @@ class ParticipationController extends AbstractController
      * @Route("/supprimer/{id}", name="deleteParticipants")
      */
     public function supppart($id): Response
-    {  //recupere le classroom a supprime
-        $reservation=$this->getDoctrine()->getRepository(Reservation::class)->find($id);
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        //recupere le classroom a supprime
+        $reservation = $this->getDoctrine()->getRepository(Reservation::class)->find($id);
+
         //on passe a la supppresion
-        $em=$this->getDoctrine()->getManager();
         $em->remove($reservation);
         $em->flush();
+
+        $phone_number = $reservation->getNumtelephonepart();
+        $name = $reservation->getNamepart();
+
+        $this->twilio->messages->create(
+            '+216'.$phone_number,
+            [ 'from' => getenv('TWILIO_NUMBER'),
+            'body' => "Désolé M./Mme. ".$name.". Votre participation a été annulée." ]);
+
         return $this->redirectToRoute('part-list');
 
     }

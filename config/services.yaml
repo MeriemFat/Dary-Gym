@@ -36,3 +36,9 @@ services:
 
     App\EventSubscriber\RedirectToLocaleSubscriber:
         arguments: ['@router', '%app_locales%', '%locale%']
+
+    twilio.client:
+        class: Twilio\Rest\Client
+        arguments: [ '%env(TWILIO_SID)%', '%env(TWILIO_AUTH_TOKEN)%' ]
+
+    Twilio\Rest\Client: '@twilio.client'
