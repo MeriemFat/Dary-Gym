@@ -41,6 +41,12 @@ class Archive
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank( message="Votre nomarchive ne doit pas etre vide")
+     */
+    private $image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -78,6 +84,18 @@ class Archive
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage( $image)
+    {
+        $this->image = $image;
 
         return $this;
     }

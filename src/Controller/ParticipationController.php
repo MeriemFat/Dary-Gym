@@ -35,6 +35,7 @@ class ParticipationController extends AbstractController
         ->data('nompart : '.$reservation->getNamepart().'ville : '.$reservation->getVille())
         ->build());
     }
+
     /**
      * @Route("/supprimer/{id}", name="deleteParticipants")
      */

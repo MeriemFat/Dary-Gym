@@ -47,8 +47,6 @@ class EvenementController extends AbstractController
         if($form->isSubmitted()&& $form->isValid()){
 
             $file=$event->getImage();
-
-
             $filename = $this->generateUniqueFileName().'.'.$file->guessExtension();
 
             $file->move($this->getParameter('photos_directory'),$filename);

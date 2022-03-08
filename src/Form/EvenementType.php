@@ -21,6 +21,8 @@ class EvenementType extends AbstractType
             ->add('Lieu')
             ->add('Date')
             ->add('Type')
+            ->add('Prix')
+            ->add('datefin')
             ->add('Description',TextareaType::class)
         ->add('image', FileType::class, array('data_class' => null));
 

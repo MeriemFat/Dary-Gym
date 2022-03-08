@@ -8,8 +8,11 @@ use App\Entity\Reservation;
 use App\Form\EvenementType;
 use App\Form\ReservationType;
 use App\Repository\EvenementRepository;
+use App\Repository\ReservationRepository;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Endroid\QrCode\Builder\BuilderInterface;
+use Endroid\QrCodeBundle\Response\QrCodeResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
@@ -77,10 +81,11 @@ class ReservationController extends AbstractController
 
         return $realEntities;
     }
-
+/*
     /**
      * @Route("/pdf/{id}", name="pdf",methods={"GET"})
      */
+    /*
     public function pdf(EvenementRepository $repository , $id)
     {
         $pdfOptions = new Options();
@@ -112,5 +117,69 @@ class ReservationController extends AbstractController
             "Attachment" => false
         ]);
     }
+*/
+    /**
+     * @Route("/qrcode/{id}",name="qrcode")
+     */
+    public function qrcode(BuilderInterface $customQrCodeBuilder , $id , EvenementRepository$repository)
+    {
+        $events = $repository->find($id);
+        return new QrCodeResponse($customQrCodeBuilder->size(400)
+            ->margin(20)
+            ->data('Votre ticket sou le nom de levenement :  '.'nom: '.$events->getNom().'   '.' prix: '.$events->getPrix())
+            ->build());
+    }
+
+
+    /**
+     * @Route("/reservation/create-checkout-session", name="checkout")
+     */
+    public function checkout()
+    {
+        \Stripe\Stripe::setApiKey('sk_test_51ITrmKDemurknTpxCDhbkbloGf2Vp9zDeOfOF80IVNhYUS5RnsYtvcYPYXr1dyygpj70e127PbPpr5HRLqqspqSO00H1gDbJGa');
+        $session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => [
+                        'name' => 'ticket-evenement',
+                    ],
+                    'unit_amount'=> '20 DT',
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            # These placeholder URLs will be replaced in a following step.
+            'success_url'=> $this->generateUrl('success',[],UrlGeneratorInterface::ABSOLUTE_URL),
+            'cancel_url' => $this->generateUrl('echec',[],UrlGeneratorInterface::ABSOLUTE_URL),
+        ]);
+        return new JsonResponse(['id'=>$session->id]);
+    }
+
+    /**
+     * @Route("/reservation/success", name="success")
+     */
+
+    public function success(): Response
+    {
+
+        return $this->render('front/reservation/success.html.twig', [
+
+        ]);
+    }
+
+    /**
+     * @Route("/reservation/echec", name="echec")
+     */
+
+
+    public function echec(): Response
+    {
+        return $this->render('front/reservation/echec.html.twig', [
+
+        ]);
+    }
+
 
 }

@@ -12,6 +12,8 @@
                 <th>Date</th>
                 <th>Type</th>
                 <th>Description</th>
+                <th>Prix</th>
+                <th>Datefin</th>
                 <th>image</th>
 
             </tr>
@@ -23,6 +25,8 @@
                     <td>{{ event.Lieu }}</td>
                     <td>{{ event.Date }}</td>
                     <td>{{ event.Type }}</td>
+                    <td>{{ event.Prix }}</td>
+                    <td>{{ event.datefin }}</td>
                     <td>{{ event.Description }}</td>
                     <td><td> <img class="-google-plus-circle" src="{{ asset('uploads/images/') ~ event.image }}"alt="exercice" width="192" height="140" >  </td>
                     </td>

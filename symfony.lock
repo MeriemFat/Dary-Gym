@@ -128,6 +128,9 @@
     "nikic/php-parser": {
         "version": "v4.13.2"
     },
+    "nomaya/social-bundle": {
+        "version": "1.0-dev"
+    },
     "phar-io/manifest": {
         "version": "2.0.3"
     },
@@ -255,6 +258,9 @@
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "stripe/stripe-php": {
+        "version": "v7.116.0"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.3.0"

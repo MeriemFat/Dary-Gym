@@ -31,12 +31,24 @@ class HistoryController extends AbstractController
 
         $form->handleRequest($request);
         if($form->isSubmitted()&& $form->isValid()){
+
+            $file=$blog->getImage();
+            $filename = $this->generateUniqueFileName().'.'.$file->guessExtension();
+
+            $file->move($this->getParameter('photos_directory'),$filename);
+
+            $blog->setImage($filename);
             $em = $this->getDoctrine()->getManager();
             $em->persist($blog);
             $em->flush();
             return $this->redirectToRoute('acceuille-list');
         }
         return $this->render("admin/history/history.html.twig",['form'=> $form->createView()]);
+    }
+
+    private function generateUniqueFileName()
+    {
+        return md5(uniqid());
     }
 
 }

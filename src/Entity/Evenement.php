@@ -56,11 +56,6 @@ class Evenement
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $images;
-
-    /**
      * @ORM\OneToMany(targetEntity=user::class, mappedBy="evenement")
      */
     private $relation;
@@ -74,6 +69,17 @@ class Evenement
      * @ORM\Column(type="string", length=500)
      */
     private $image;
+
+    /**
+
+     * @ORM\Column(type="string")
+     */
+    private $prix;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $datefin;
 
 
 
@@ -214,6 +220,30 @@ class Evenement
     public function setImage( $image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getPrix(): ?string
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(string $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getDatefin(): ?string
+    {
+        return $this->datefin;
+    }
+
+    public function setDatefin(string $datefin): self
+    {
+        $this->datefin = $datefin;
 
         return $this;
     }

@@ -85,6 +85,13 @@ class User implements UserInterface, EquatableInterface
     private $archive;
 
     /**
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="user")
+     */
+    private $reservations;
+
+
+
+    /**
      * @ORM\OneToOne(targetEntity=Archive::class, cascade={"persist", "remove"})
      */
     //private $description;
@@ -102,6 +109,7 @@ class User implements UserInterface, EquatableInterface
         $this->blogPosts = new ArrayCollection();
         $this->blogPostsCreated = new ArrayCollection();
         $this->historiques = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -385,4 +393,36 @@ class User implements UserInterface, EquatableInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getUser() === $this) {
+                $reservation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }
