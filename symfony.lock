@@ -1,4 +1,7 @@
 {
+    "authy/php": {
+        "version": "3.0.5"
+    },
     "bacon/bacon-qr-code": {
         "version": "2.0.6"
     },
@@ -116,8 +119,23 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
+    "guzzlehttp/guzzle": {
+        "version": "6.5.5"
+    },
+    "guzzlehttp/promises": {
+        "version": "1.5.1"
+    },
+    "guzzlehttp/psr7": {
+        "version": "1.8.3"
+    },
     "laminas/laminas-code": {
         "version": "4.5.1"
+    },
+    "laminas/laminas-eventmanager": {
+        "version": "3.4.0"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.4.1"
     },
     "monolog/monolog": {
         "version": "1.26.1"
@@ -190,11 +208,17 @@
     "psr/container": {
         "version": "1.1.2"
     },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/link": {
         "version": "1.0.0"
     },
     "psr/log": {
         "version": "1.1.4"
+    },
+    "ralouphie/getallheaders": {
+        "version": "3.0.3"
     },
     "sabberworm/php-css-parser": {
         "version": "8.4.0"
@@ -650,6 +674,9 @@
     },
     "twig/twig": {
         "version": "v3.3.8"
+    },
+    "twilio/sdk": {
+        "version": "6.35.0"
     },
     "webmozart/assert": {
         "version": "1.10.0"
