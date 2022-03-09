@@ -65,6 +65,8 @@ class Participation
         return $this->id;
     }
 
+
+
     public function getNompart(): ?string
     {
         return $this->nompart;

@@ -56,7 +56,7 @@ class ParticipationController extends AbstractController
         $reservation = $this->getDoctrine()->getRepository(Reservation::class)->find($id);
 
         //on passe a la supppresion
-        $em->remove($reservation);
+       $em->remove($reservation);
         $em->flush();
 
         $phone_number = $reservation->getNumtelephonepart();
